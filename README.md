@@ -1,4 +1,6 @@
-phoenix
+Phoenix
 =======
 
-Zoop default storefront templates and readme
+Zoop custom storefront templates and readme.
+
+Check out the [Getting Started](https://github.com/zoopcommerce/phoenix/wiki) documentation.
