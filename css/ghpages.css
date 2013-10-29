@@ -1,0 +1,58 @@
+h2 {
+    padding: 0;
+}
+hr {
+    margin: 10px 0;
+}
+.masthead {
+    text-align: center;
+}
+.masthead h1 {
+    font-size: 120px;
+    line-height: 130px;
+}
+.masthead p {
+    font-size: 40px;
+    line-height: 42px;
+}
+
+.masthead p .btn-large {
+    margin: 10px 0;
+    border-radius: 3px 3px 3px 3px;
+    font-size: 30px;
+    padding: 26px 70px;
+}
+
+.marketing h2 {
+    text-align: center;
+    font-weight: normal;
+}
+.head {
+    padding: 10px;
+}
+
+.head h1 {
+    font-size: 50px;
+    line-height: 68px;
+}
+
+.head p {
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.side-nav i {
+    float: right;
+}
+
+.nav-list.affix {
+    top: 20px;
+    width: 26.8%;
+}
+@media (max-width: 767px) { 
+    .nav-list.affix { 
+        position: static;
+        width: auto;
+        top: 0;
+    }
+}

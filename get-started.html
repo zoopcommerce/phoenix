@@ -1,0 +1,145 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Phoenix | Zoop</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="Josh Stuart">
+        <meta name="author" content="Tim Roediger">
+
+        <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+
+        <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,700" rel="stylesheet" type="text/css">
+        <link href="css/admin.min.css" rel="stylesheet" type="text/css">
+        <link href="css/ghpages.css" rel="stylesheet" type="text/css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <script src="js/havok.js"></script>
+
+        <script type="text/javascript">
+            require([
+                'havok/exception/started!',
+                'havok/router/started!',
+                'havok/parseComplete!'
+            ], function() {
+            })
+        </script>
+    </head>
+
+    <body onload="prettyPrint()">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a href="http://zoopcommerce.com" class="brand"><img src="images/logo-header.png"></a>
+                    <div class="nav-collapse collapse" id="nav">
+                        <ul class="nav pull-right">
+                            <li class="active">
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="get-started.html">Get Started</a>
+                            </li>
+                            <li>
+                                <a href="templating.html">Templating Markup</a>
+                            </li>
+                            <li>
+                                <a href="ajax-markup.html">AJAX Markup</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12 well">
+                    <div class="head">
+                        <h1>Getting Started</h1>
+                        <p>Custom templates for your Zoop online store</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span4">
+                    <ul data-dojo-type="havok/widget/NavList"
+                        data-dojo-mixins="havok/widget/_AffixMixin, havok/widget/_ScrollSpyMixin"
+                        data-dojo-props="
+                        linkTemplate: '&lt;a role=&quot;navitem&quot; href=&quot;${href}&quot;&gt;&lt;i class=&quot;icon-chevron-right&quot;&gt;&lt;/i&gt; ${text}&lt;/a&gt;',
+                        viewportOffset: {top: 40, bottom: 0},
+                        affixTarget: 'mainContent',
+                        spyTarget: 'mainContent'
+                        "
+                        class="well nav nav-list side-nav affix-top"
+                        >
+                    </ul>
+                </div>
+                <div class="span8" id="mainContent">
+                    <section id="download-phoenix" title="Download" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Download</h2>
+                            <hr>
+                            <p>
+                                Before downloading, be sure to have a code editor (we recommend Sublime Text 2) and some working knowledge of HTML and CSS. We won't walk through the source files here, but they are available for download. We'll focus on getting started with the compiled Bootstrap files.
+                            </p>
+                        </div>
+                    </section>
+                    <section id="file-structure" title="File structure" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>File structure</h2>
+                            <hr>
+                            <p>
+                                The default file structure required by the Zoop templating engine is as follows:
+                            </p>
+                            <pre class="prettyprint">
+    phoenix/
+    ├── assets/
+    │   ├── css/
+    │   ├── images/
+    │   ├── js/
+    │   ├── twig/
+    ├── layouts/
+    ├── macros/
+    ├── cart.twig
+    ├── checkout.twig
+    ├── collection.twig
+    ├── contact.twig
+    ├── download.twig
+    ├── index.twig
+    ├── maintenance.twig
+    ├── product.twig
+    ├── search.twig
+    └── thankyou.twig
+                            </pre>
+                            <p>
+                                The included *.twig files are required as they correspond directly to a page or section in your store. You can add as many other assets as you require within the assets, layouts and macros folders.
+                            </p>
+                        </div>
+                    </section>
+                    <section id="whats-included" title="What's included" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>What's included</h2>
+                            <hr>
+                            <p></p>
+                        </div>
+                    </section>
+                    <section id="examples" title="Examples" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Examples</h2>
+                            <hr>
+                            <p></p>
+                        </div>
+                    </section>
+                    <section id="whats-next" title="What next?" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>What next?</h2>
+                            <hr>
+                            <p></p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <script src="js/google-code-prettify/prettify.js"></script>
+    </body>
+</html>

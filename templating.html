@@ -1,0 +1,236 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Phoenix | Zoop</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="Josh Stuart">
+        <meta name="author" content="Tim Roediger">
+
+        <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+
+        <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,700" rel="stylesheet" type="text/css">
+        <link href="css/prettify.css" rel="stylesheet">
+        <link href="css/admin.min.css" rel="stylesheet" type="text/css">
+        <link href="css/ghpages.css" rel="stylesheet" type="text/css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <script src="js/havok.js"></script>
+
+        <script type="text/javascript">
+            require([
+                'havok/exception/started!',
+                'havok/router/started!',
+                'havok/parseComplete!'
+            ], function() {
+            })
+        </script>
+    </head>
+
+    <body onload="prettyPrint()">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a href="http://zoopcommerce.com" class="brand"><img src="images/logo-header.png"></a>
+                    <div class="nav-collapse collapse" id="nav">
+                        <ul class="nav pull-right">
+                            <li class="active">
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="get-started.html">Get Started</a>
+                            </li>
+                            <li>
+                                <a href="pages.html">Pages</a>
+                            </li>
+                            <li>
+                                <a href="templating.html">Templating</a>
+                            </li>
+                            <li>
+                                <a href="ajax.html">AJAX</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12 well">
+                    <div class="head">
+                        <h1>Templating Markup</h1>
+                        <p>Custom templates for your Zoop online store</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span4">
+                    <ul data-dojo-type="havok/widget/NavList"
+                        data-dojo-mixins="havok/widget/_AffixMixin, havok/widget/_ScrollSpyMixin"
+                        data-dojo-props="
+                        linkTemplate: '&lt;a role=&quot;navitem&quot; href=&quot;${href}&quot;&gt;&lt;i class=&quot;icon-chevron-right&quot;&gt;&lt;/i&gt; ${text}&lt;/a&gt;',
+                        viewportOffset: {top: 40, bottom: 0},
+                        affixTarget: 'mainContent',
+                        spyTarget: 'mainContent'
+                        "
+                        class="well nav nav-list side-nav affix-top"
+                        >
+                    </ul>
+                </div>
+                <div class="span8" id="mainContent">
+                    <section id="introduction" title="Introduction" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Introduction</h2>
+                            <hr>
+                            <p>To allow simple and complete storefront customization we are utilizing <a href="http://twig.sensiolabs.org/">Twig</a>, which is a robust templating engine for PHP.</p> 
+                            <p>Twig allows you to add <a href="http://twig.sensiolabs.org/doc/tags/if.html">conditional statements</a>, <a href="http://twig.sensiolabs.org/doc/tags/for.html">loops</a> and of course, <a href="http://twig.sensiolabs.org/doc/tags/set.html">variable substitution</a>.</p>
+                            <p>The semantics will be familiar as many other popular e-commerce platforms, including Shopify, use similar markup in their templates. And even if you have never used a templating engine before, it is simple enough to get up and running quickly!</p>
+                            <p>Below is a break down of some of the concepts you will need to know to begin templating.</p>
+                        </div>
+                    </section>
+                    <section id="accessing-variables" title="Accessing variables" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Accessing variables</h2>
+                            <hr>
+                            <p>The fundamental aspect of a templating engine is to allow you access to dynamic information (eg product name, price etc), and present that in your page.</p>
+                            <p>To do so is quite simple:</p>
+                            <pre class="prettyprint linenums">&lt;span&gt;Store name: &lt;/span&gt;&lt;span&gt;{{ store.name }}&lt;/span&gt;</pre>
+                            <p>As you can see, by enclosing a variable in double moustaches <strong>{{ ... }}</strong> it will attempt to parse the variable.</p>
+                        </div>
+                    </section>
+                    <section id="control-structures" title="Control Structures" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Control Structures</h2>
+                            <hr>
+                            <p>A control structure refers to all things that dictate the flow of a program eg. conditions such as if/elseif/else, for-loops, as well as things like blocks. Control structures appear inside <strong>{% ... %}</strong> blocks.</p>
+                            <hr>
+                            <h4>Conditions</h4>
+                            <p>The following example checks the product to see if it in fact has a sale price. If it does, it will display both the sale price and the regular price for comparison. Otherwise it just displays the regular price. </p>
+                            <pre class="prettyprint linenums">{% if(product.price.sale &gt; 0) %}
+    &lt;span class=&quot;on-sale-price&quot;&gt;On Sale now: ${{ product.price.sale }}&lt;/span&gt;
+    &lt;span class=&quot;regular-price&quot;&gt;{{ product.price.full }}&lt;/span&gt;
+{% else %}
+    ${{ product.price.full }}
+{% endif %}</pre>
+                            <hr>
+                            <h4>Loops</h4>
+                            <p>This example iterates through a product image set and displays each thumbnail.</p>
+                            <pre class="prettyprint linenums">{% for image in product.images %}
+    &lt;img src=&quot;{{ image.thumbnail.src }}&quot; alt=&quot;{{ image.thumbnail.alt }}&quot; width=&quot;{{ image.thumbnail.width }}&quot; height=&quot;{{ image.thumbnail.height }}&quot;&gt;
+{% endfor %}</pre>
+                            <hr>
+                            <h4>Includes</h4>
+                            <p>You are able to include other templates to allow your project to be more modular and reusable. For instance, you can include a navigation template easily on each page just by:</p>
+                            <pre class="prettyprint linenums">{% include &quot;navigation.html&quot; %}</pre>
+                            <h4>Further reading</h4>
+                            <p>There's a load more functionality such as functions, filters, blocks and much more! Twig has some great documentation that can be found by visiting: <a href="http://twig.sensiolabs.org/documentation">http://twig.sensiolabs.org/documentation</a></p>
+                        </div>
+                    </section>
+                    <section id="global-variables" title="Global variables" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Global variables</h2>
+                            <hr>
+                            <p>We have implemented a number of convenient global variables which can be accessed from all pages.</p>
+                            <hr>
+                            <h4>Site</h4>
+                            <p>The <strong>site</strong> global variable contains information pertaining to the site:</p>
+<!--                            <ul>
+                                <li>
+                                    <strong>site</strong>
+                                    <ul>
+                                        <li>
+                                            <strong>head</strong>
+                                            <ul>
+                                                <li>
+                                                    <strong>favicon</strong>: The favorite icon.
+                                                </li>
+                                                <li>
+                                                    <strong>meta</strong>
+                                                    <ul>
+                                                        <li>
+                                                            <strong>description</strong>: The page meta description which is set by either the store, collection or product SEO description.
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <strong>openGraph</strong>: Contains open graph information https://developers.facebook.com/docs/opengraph/
+                                                </li>
+                                                <li>
+                                                    <strong>title</strong>: The page title which is made up from product, collection and site name
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>status</strong>
+                                            <ul>
+                                                <li>
+                                                    <strong>active</strong>: Is the store active or not
+                                                </li>
+                                                <li>
+                                                    <strong>message</strong>: Contains a message which can be displayed when a store is inactive
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <strong>url</strong>
+                                            <ul>
+                                                <li>
+                                                    <strong>checkout</strong>: The absolute url of the checkout
+                                                </li>
+                                                <li>
+                                                    <strong>currentPage</strong>
+                                                    <ul>
+                                                        <li>
+                                                            <strong>absolute</strong>: The absolute url of the current page
+                                                        </li>
+                                                        <li>
+                                                            <strong>relative</strong>: The relative url of the current page
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <strong>home</strong>: The absolute url of the home page
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>-->
+                            <pre class="prettyprint linenums">
+var site = {
+    css: array | [string], // contains an array of css files. This only applies if you are using Zoop default templates.
+    dojo: array | [string], // contains an array of dojo javascript files. This only applies if you are using Zoop default templates.
+    head: {
+        favicon: string | null, // favourite icon
+        meta: {
+            description: string // The page meta description
+        },
+        openGraph: string, // This contains open graph information https://developers.facebook.com/docs/opengraph/
+        title: string // The page title which is made up from product, category and site name
+    },
+    javascript: array | [string], // contains an array of javascript files. This only applies if you are using Zoop default templates.
+    status: {
+        active: boolean, // Is the store active or not
+        message: string | null // Contains a message which can be displayed when a store is inactive
+    },
+    url: {
+        checkout: string, // The absolute url of the checkoute
+        currentPage: {
+            absolute: string, // The absolute url of the current page
+            relative: string // The relative url of the current page
+        },
+        home: string // The absolute url of the home page
+    }
+}
+                            </pre>
+                            <p>To access these variables just use "dot" notation eg.</p>
+                            <pre class="prettyprint linenums">{{ site.url.currentPage.absolute }}</pre>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <script src="js/prettify.js"></script>
+    </body>
+</html>
