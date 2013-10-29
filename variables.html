@@ -1,0 +1,539 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Phoenix | Zoop</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="author" content="Josh Stuart">
+        <meta name="author" content="Tim Roediger">
+
+        <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+
+        <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,700" rel="stylesheet" type="text/css">
+        <link href="css/prettify.css" rel="stylesheet">
+        <link href="css/admin.min.css" rel="stylesheet" type="text/css">
+        <link href="css/ghpages.css" rel="stylesheet" type="text/css">
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <script src="js/havok.js"></script>
+
+        <script type="text/javascript">
+            require([
+                'havok/exception/started!',
+                'havok/router/started!',
+                'havok/parseComplete!'
+            ], function() {
+            })
+        </script>
+    </head>
+
+    <body onload="prettyPrint()">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a href="http://zoopcommerce.com" class="brand"><img src="images/logo-header.png"></a>
+                    <div class="nav-collapse collapse" id="nav">
+                        <ul class="nav pull-right">
+                            <li>
+                                <a href="/">Home</a>
+                            </li>
+                            <li>
+                                <a href="get-started.html">Get Started</a>
+                            </li>
+                            <li>
+                                <a href="basics.html">Basics</a>
+                            </li>
+                            <li>
+                                <a href="pages.html">Pages</a>
+                            </li>
+                            <li class="active">
+                                <a href="variables.html">Variables</a>
+                            </li>
+                            <li>
+                                <a href="ajax.html">AJAX</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content" class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12 well">
+                    <div class="head">
+                        <h1>Variables</h1>
+                        <p>All you can eat variables!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span4">
+                    <ul data-dojo-type="havok/widget/NavList"
+                        data-dojo-mixins="havok/widget/_AffixMixin, havok/widget/_ScrollSpyMixin"
+                        data-dojo-props="
+                        linkTemplate: '&lt;a role=&quot;navitem&quot; href=&quot;${href}&quot;&gt;&lt;i class=&quot;icon-chevron-right&quot;&gt;&lt;/i&gt; ${text}&lt;/a&gt;',
+                        viewportOffset: {top: 40, bottom: 0},
+                        affixTarget: 'mainContent',
+                        spyTarget: 'mainContent'
+                        "
+                        class="well nav nav-list side-nav affix-top"
+                        >
+                    </ul>
+                </div>
+                <div class="span8" id="mainContent">
+                    <section id="introduction" title="Introduction" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Introduction</h2>
+                            <hr>
+                            <p></p>
+                        </div>
+                    </section>
+                    <section id="cart-variables" title="Cart" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Cart</h2>
+                        </div>
+                    </section>
+                    <section id="checkout-variables" title="Checkout" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Checkout</h2>
+                        </div>
+                    </section>
+                    <section id="collection-variables" title="Collection" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Collection</h2>
+                            <p></p>
+                            <h5>Accessible from: collection.twig</h5>
+                            <pre class="prettyprint linenums">
+var collection = {
+    appendHtml: string,
+    children: array | [collection],
+    depth: integer,
+    display: boolean,
+    images: array | [
+        {
+            raw: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            large: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            medium: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            }
+        }
+    ],
+    name: string,
+    description: string,
+    products: array | [product],
+    pagination: {
+        pages: array | [
+            {
+                active: boolean,
+                disable: boolean,
+                title: string,
+                url: string
+            }
+        ]
+    },
+    prependHtml: string,
+    url: {
+        absolute: string, // The absolute url of the current page
+        relative: string // The relative url of the current page
+    }
+}</pre>
+                        </div>
+                    </section>
+                    <section id="collections-variables" title="Collections" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Collections</h2>
+                        </div>
+                    </section>
+                    <section id="menu-variables" title="Menu" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Menu</h2>
+                        </div>
+                    </section>
+                    <section id="page-variables" title="Page" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Page</h2>
+                        </div>
+                    </section>
+                    <section id="pages-variables" title="Pages" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Pages</h2>
+                        </div>
+                    </section>
+                    <section id="product-variables" title="Product" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Product</h2>
+                            <p></p>
+                            <h5>Accessible from: product.twig</h5>
+                            <pre class="prettyprint linenums">
+var product = {
+    brand: string,
+    createdOn: datetime,
+    updatedOn: datetime,
+    description: string,
+    display: boolean,
+    html: {
+        append: string,
+        prepend string
+    },
+    images: array | [
+        {
+            raw: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            extraLarge: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            large: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            medium: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            small: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            thumbnail: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            }
+        }
+    ],
+    name: string,
+    options: array | [
+        {
+            id: integer,
+            name: string,
+            quantity: integer
+        }
+    ],
+    price: {
+        display: double,
+        full: double,
+        sale: double
+    },
+    status: {
+        id: int,
+        name: string
+    },
+    supplier: string,
+    url: {
+        absolute: string, // The absolute url of the product
+        relative: string // The relative url of the product
+    }
+}
+                            </pre>
+                        </div>
+                    </section>
+                    <section id="search-variables" title="Search" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Search</h2>
+                        </div>
+                    </section>
+                    <section id="site-variables" title="Site" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Site</h2>
+                            <hr>
+                            <p>The <strong>site</strong> global variable contains information pertaining to the site.</p>
+                            <h5>Accessible from: all pages</h5>
+                            <pre class="prettyprint linenums">
+var site = {
+    css: array | [string], // contains an array of css files. This only applies if you are using Zoop default templates.
+    dojo: array | [string], // contains an array of dojo javascript files. This only applies if you are using Zoop default templates.
+    head: {
+        favicon: string | null, // favourite icon
+        meta: {
+            description: string // The page meta description
+        },
+        openGraph: string, // This contains open graph information https://developers.facebook.com/docs/opengraph/
+        title: string // The page title which is made up from product, category and site name
+    },
+    javascript: array | [string], // contains an array of javascript files. This only applies if you are using Zoop default templates.
+    status: {
+        active: boolean, // Is the store active or not
+        message: string | null // Contains a message which can be displayed when a store is inactive
+    },
+    url: {
+        checkout: string, // The absolute url of the checkoute
+        currentPage: {
+            absolute: string, // The absolute url of the current page
+            relative: string // The relative url of the current page
+        },
+        home: string // The absolute url of the home page
+    }
+}</pre>
+                            <p>To access these variables just use "dot" notation eg.</p>
+                            <pre class="prettyprint linenums">{{ site.url.currentPage.absolute }}</pre>
+                        </div>
+                    </section>
+                    <section id="store-variables" title="Store" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Store</h2>
+                            <p>The <strong>store</strong> global variable contains only store information.</p>
+                            <h5>Accessible from: all pages</h5>
+                            <pre class="prettyprint linenums">
+var store = {
+    address: {
+        line1: string,
+        line2: string,
+        city: string,
+        state: string,
+        zipcode: string,
+        country: {
+            code: char(2), // ISO 3166-1-alpha-2 http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm
+            name: string // full country name 
+        }
+    },
+    businessName: string,
+    currency: {
+        code: char(3), // ISO 4217 http://www.iso.org/iso/home/standards/currency_codes.htm,
+        symbol: string
+    },
+    customDomain: string,
+    description: string,
+    email: string,
+    googleAnalyticsCode: string,
+    name: string,
+    phoneNumber: string,
+    policies: {
+        creditCard: string,
+        payment: string,
+        privacy: string,
+        returns: string,
+        shipping: string,
+        sizing: string
+    },
+    subdomain: string,
+    social: {
+        facebook: {
+            url: string,
+            username: string
+        },
+        twitter: {
+            url: string,
+            username: string
+        },
+        youtube: {
+            url: string,
+            username: string
+        },
+        instagram: {
+            url: string,
+            username: string
+        }
+    },
+    tax: {
+        country: char(2),
+        isShippingTaxed: boolean,
+        isTaxRemoved: boolean,
+        isTaxIncluded: boolean,
+        label: string,
+        number: string,
+        rate: number
+    },
+    url: string // The absolute url of the store
+}</pre>
+                        </div>
+                    </section>
+                    <section id="featured-variables" title="Featured" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Featured</h2>
+                            <p>Is a special type of collection that only appears on the home page.</p>
+                            <h5>Accessible from: index.twig</h5>
+                            <pre class="prettyprint linenums">
+var featured = {
+    appendHtml: string,
+    children: array | [collections],
+    display: boolean,
+    images: array | [
+        {
+            raw: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            large: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            medium: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            }
+        }
+    ],
+    name: string,
+    products: array | [product],
+    pagination: {
+        pages: array | [
+            {
+                active: boolean,
+                disable: boolean,
+                title: string,
+                url: string
+            }
+        ]
+    },
+    prependHtml: string
+}
+                            </pre>
+                        </div>
+                    </section>
+                    <section id="top-selling-variables" title="Top Selling" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Top Selling</h2>
+                            <p>Is a dynamic collection that displays the top selling products.</p>
+                            <h5>Accessible from: index.twig</h5>
+                            <pre class="prettyprint linenums">
+var topSelling = {
+    appendHtml: string,
+    children: array | [collections],
+    display: boolean,
+    images: array | [
+        {
+            raw: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            large: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            medium: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            }
+        }
+    ],
+    name: string,
+    products: array | [product],
+    pagination: {
+        pages: array | [
+            {
+                active: boolean,
+                disable: boolean,
+                title: string,
+                url: string
+            }
+        ]
+    },
+    prependHtml: string
+}
+                            </pre>
+                        </div>
+                    </section>
+
+                    <section id="new-products-variables" title="New Products" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>New Products</h2>
+                            <p>Is a dynamic collection that displays the newest products.</p>
+                            <h5>Accessible from: index.twig</h5>
+                            <pre class="prettyprint linenums">
+var newProducts = {
+    appendHtml: string,
+    children: array | [collections],
+    display: boolean,
+    images: array | [
+        {
+            raw: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            large: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            },
+            medium: {
+                alt: string,
+                mime: string, // http://en.wikipedia.org/wiki/Internet_media_type#Type_image
+                src: string,
+                height: integer,
+                width: integer
+            }
+        }
+    ],
+    name: string,
+    products: array | [product],
+    pagination: {
+        pages: array | [
+            {
+                active: boolean,
+                disable: boolean,
+                title: string,
+                url: string
+            }
+        ]
+    },
+    prependHtml: string
+}
+                            </pre>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <script src="js/prettify.js"></script>
+    </body>
+</html>
