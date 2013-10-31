@@ -92,18 +92,35 @@
                     <section id="cart-variables" title="Cart" class="row-fluid">
                         <div class="span12 well">
                             <h2>Cart</h2>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li>cart.twig</li>
+                                <li>checkout.twig</li>
+                                <li>collection.twig</li>
+                                <li>contact.twig</li>
+                                <li><a href="#">index.twig</a></li>
+                                <li>product.twig</li>
+                                <li>search.twig</li>
+                            </ul>
                         </div>
                     </section>
                     <section id="checkout-variables" title="Checkout" class="row-fluid">
                         <div class="span12 well">
                             <h2>Checkout</h2>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li>checkout.twig</li>
+                            </ul>
                         </div>
                     </section>
                     <section id="collection-variables" title="Collection" class="row-fluid">
                         <div class="span12 well">
                             <h2>Collection</h2>
                             <p></p>
-                            <h5>Accessible from: collection.twig</h5>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li>collection.twig</li>
+                            </ul>
                             <pre class="prettyprint linenums">
 var collection = {
     appendHtml: string,
@@ -159,28 +176,64 @@ var collection = {
                     <section id="collections-variables" title="Collections" class="row-fluid">
                         <div class="span12 well">
                             <h2>Collections</h2>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">all pages</a></li>
+                            </ul>
                         </div>
                     </section>
                     <section id="menu-variables" title="Menu" class="row-fluid">
                         <div class="span12 well">
                             <h2>Menu</h2>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">all pages</a></li>
+                            </ul>
                         </div>
                     </section>
                     <section id="page-variables" title="Page" class="row-fluid">
                         <div class="span12 well">
                             <h2>Page</h2>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">all pages</a></li>
+                            </ul>
+                            <pre class="prettyprint linenums">
+var page = {
+    css: array | [string], // contains an array of css files. This only applies if you are using Zoop default templates.
+    dojo: array | [string], // contains an array of dojo javascript files. This only applies if you are using Zoop default templates.
+    favicon: string | null, // favourite icon
+    meta: {
+        description: string // The page meta description,
+        openGraph: string, // This contains open graph information https://developers.facebook.com/docs/opengraph/
+    },
+    title: string, // The page title which is made up from product, category and site name,
+    javascript: array | [string], // contains an array of javascript files. This only applies if you are using Zoop default templates.
+    url: {
+        absolute: string, // The absolute url of the current page
+        relative: string // The relative url of the current page
+    }
+}</pre>
                         </div>
                     </section>
                     <section id="pages-variables" title="Pages" class="row-fluid">
                         <div class="span12 well">
                             <h2>Pages</h2>
+                            <p></p>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">all pages</a></li>
+                            </ul>
                         </div>
                     </section>
                     <section id="product-variables" title="Product" class="row-fluid">
                         <div class="span12 well">
                             <h2>Product</h2>
                             <p></p>
-                            <h5>Accessible from: product.twig</h5>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li>product.twig</li>
+                            </ul>
                             <pre class="prettyprint linenums">
 var product = {
     brand: string,
@@ -274,42 +327,27 @@ var product = {
                             <h2>Site</h2>
                             <hr>
                             <p>The <strong>site</strong> global variable contains information pertaining to the site.</p>
-                            <h5>Accessible from: all pages</h5>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">all pages</a></li>
+                            </ul>
                             <pre class="prettyprint linenums">
 var site = {
-    css: array | [string], // contains an array of css files. This only applies if you are using Zoop default templates.
-    dojo: array | [string], // contains an array of dojo javascript files. This only applies if you are using Zoop default templates.
-    head: {
-        favicon: string | null, // favourite icon
-        meta: {
-            description: string // The page meta description
-        },
-        openGraph: string, // This contains open graph information https://developers.facebook.com/docs/opengraph/
-        title: string // The page title which is made up from product, category and site name
-    },
-    javascript: array | [string], // contains an array of javascript files. This only applies if you are using Zoop default templates.
     status: {
         active: boolean, // Is the store active or not
         message: string | null // Contains a message which can be displayed when a store is inactive
-    },
-    url: {
-        checkout: string, // The absolute url of the checkoute
-        currentPage: {
-            absolute: string, // The absolute url of the current page
-            relative: string // The relative url of the current page
-        },
-        home: string // The absolute url of the home page
     }
 }</pre>
-                            <p>To access these variables just use "dot" notation eg.</p>
-                            <pre class="prettyprint linenums">{{ site.url.currentPage.absolute }}</pre>
                         </div>
                     </section>
                     <section id="store-variables" title="Store" class="row-fluid">
                         <div class="span12 well">
                             <h2>Store</h2>
                             <p>The <strong>store</strong> global variable contains only store information.</p>
-                            <h5>Accessible from: all pages</h5>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">all pages</a></li>
+                            </ul>
                             <pre class="prettyprint linenums">
 var store = {
     address: {
@@ -378,7 +416,10 @@ var store = {
                         <div class="span12 well">
                             <h2>Featured</h2>
                             <p>Is a special type of collection that only appears on the home page.</p>
-                            <h5>Accessible from: index.twig</h5>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">index.twig</a></li>
+                            </ul>
                             <pre class="prettyprint linenums">
 var featured = {
     appendHtml: string,
@@ -430,7 +471,10 @@ var featured = {
                         <div class="span12 well">
                             <h2>Top Selling</h2>
                             <p>Is a dynamic collection that displays the top selling products.</p>
-                            <h5>Accessible from: index.twig</h5>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">index.twig</a></li>
+                            </ul>
                             <pre class="prettyprint linenums">
 var topSelling = {
     appendHtml: string,
@@ -483,7 +527,10 @@ var topSelling = {
                         <div class="span12 well">
                             <h2>New Products</h2>
                             <p>Is a dynamic collection that displays the newest products.</p>
-                            <h5>Accessible from: index.twig</h5>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">index.twig</a></li>
+                            </ul>
                             <pre class="prettyprint linenums">
 var newProducts = {
     appendHtml: string,
