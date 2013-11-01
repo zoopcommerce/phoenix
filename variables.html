@@ -94,13 +94,13 @@
                             <h2>Cart</h2>
                             <h5>Accessible from:</h5>
                             <ul>
-                                <li>cart.twig</li>
-                                <li>checkout.twig</li>
-                                <li>collection.twig</li>
-                                <li>contact.twig</li>
+                                <li><a href="#">cart.twig</a></li>
+                                <li><a href="#">checkout.twig</a></li>
+                                <li><a href="#">collection.twig</a></li>
+                                <li><a href="#">contact.twig</a></li>
                                 <li><a href="#">index.twig</a></li>
-                                <li>product.twig</li>
-                                <li>search.twig</li>
+                                <li><a href="#">product.twig</a></li>
+                                <li><a href="#">search.twig</a></li>
                             </ul>
                         </div>
                     </section>
@@ -109,7 +109,7 @@
                             <h2>Checkout</h2>
                             <h5>Accessible from:</h5>
                             <ul>
-                                <li>checkout.twig</li>
+                                <li><a href="#">checkout.twig</a></li>
                             </ul>
                         </div>
                     </section>
@@ -119,15 +119,22 @@
                             <p></p>
                             <h5>Accessible from:</h5>
                             <ul>
-                                <li>collection.twig</li>
+                                <li><a href="#">collection.twig</a></li>
                             </ul>
-                            <pre class="prettyprint linenums">
+<pre class="prettyprint linenums">
 var collection = {
-    appendHtml: string,
+    name: string,
+    naturalSortName: string,
+    slug: string,
     children: array | [collection],
+    customHtml: {
+        append: string,
+        prepend: string
+    },
     depth: integer,
-    display: boolean,
-    images: array | [
+    description: string,
+    hidden: boolean,
+    imageSets: array | [
         {
             raw: {
                 alt: string,
@@ -152,24 +159,14 @@ var collection = {
             }
         }
     ],
-    name: string,
-    description: string,
     products: array | [product],
-    pagination: {
-        pages: array | [
-            {
-                active: boolean,
-                disable: boolean,
-                title: string,
-                url: string
-            }
-        ]
-    },
-    prependHtml: string,
     url: {
         absolute: string, // The absolute url of the current page
         relative: string // The relative url of the current page
-    }
+    },
+    order: integer,
+    createdOn: string,
+    updatedOn: string
 }</pre>
                         </div>
                     </section>
@@ -180,6 +177,12 @@ var collection = {
                             <ul>
                                 <li><a href="#">all pages</a></li>
                             </ul>
+<pre class="prettyprint linenums">
+var collections = {
+    key: {
+        collection //see above
+    }
+}</pre>
                         </div>
                     </section>
                     <section id="menu-variables" title="Menu" class="row-fluid">
@@ -189,6 +192,21 @@ var collection = {
                             <ul>
                                 <li><a href="#">all pages</a></li>
                             </ul>
+                            <p>The main menu is a special kind of linked list that has an alias of {{ menu }} for quick access.</p>
+<pre class="prettyprint linenums">
+var linklist = {
+    menu: {
+        key: {
+            name: string,
+            naturalOrderName: string,
+            type: link | collection | product | page | search | linklist,
+            object: link | collection | product | page | search | linklist,
+            hidden: boolean,
+            children: [menu]
+        }
+    }
+}
+var menu = linklist.menu;</pre>
                         </div>
                     </section>
                     <section id="page-variables" title="Page" class="row-fluid">
@@ -200,6 +218,13 @@ var collection = {
                             </ul>
                             <pre class="prettyprint linenums">
 var page = {
+    breadcrumbs: [{
+        name: string,
+        url: {
+            absolute: string,
+            relative: string
+        }
+    }],
     css: array | [string], // contains an array of css files. This only applies if you are using Zoop default templates.
     dojo: array | [string], // contains an array of dojo javascript files. This only applies if you are using Zoop default templates.
     favicon: string | null, // favourite icon
@@ -236,16 +261,23 @@ var page = {
                             </ul>
                             <pre class="prettyprint linenums">
 var product = {
-    brand: string,
+    brand: {
+        name: string,
+        slug: string
+    },
     createdOn: datetime,
     updatedOn: datetime,
     description: string,
-    display: boolean,
-    html: {
+    hidden: boolean,
+    customHtml: {
         append: string,
         prepend string
     },
-    images: array | [
+    information => {
+        cart: string,
+        invoice: string,
+    },
+    imageSets: array | [
         {
             raw: {
                 alt: string,
@@ -292,23 +324,56 @@ var product = {
         }
     ],
     name: string,
-    options: array | [
-        {
-            id: integer,
-            name: string,
-            quantity: integer
+    naturalSortName: string,
+    options: {
+        key: {
+            label: string,
+            type: string,
+            required: boolean,
+            values: array | [string],
+            isSkuSelector: boolean,
+            helpMessage: string
         }
-    ],
+    },
+    skuDefinitions: {
+        key: {
+            type: string,
+            optionMap: {
+                key: string
+            },
+            quantity: integer,
+            suppliers: [{
+                name: string,
+                slug: string
+            }],
+            shipping: {
+                country: string,
+                singleRate: float,
+                additionalRate: float
+            },
+            dimensions: {
+                weight: float,
+                height: float,
+                width: float,
+                depth: float
+            }
+        }
+    },
+    attributes: {
+        key: {
+            label: string,
+            type: [text | number | file],
+            value: [string | int]
+        }
+    },
     price: {
-        display: double,
-        full: double,
-        sale: double
+        display: float,
+        full: float,
+        sale: float,
+        saleActive: boolean
     },
-    status: {
-        id: int,
-        name: string
-    },
-    supplier: string,
+    status: string,
+    canPurchase: boolean,
     url: {
         absolute: string, // The absolute url of the product
         relative: string // The relative url of the product
@@ -336,6 +401,14 @@ var site = {
     status: {
         active: boolean, // Is the store active or not
         message: string | null // Contains a message which can be displayed when a store is inactive
+    },
+    policies: {
+        creditCard: string,
+        payment: string,
+        privacy: string,
+        returns: string,
+        shipping: string,
+        sizing: string
     }
 }</pre>
                         </div>
@@ -357,57 +430,43 @@ var store = {
         state: string,
         zipcode: string,
         country: {
-            code: char(2), // ISO 3166-1-alpha-2 http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm
+            id: char(2), // ISO 3166-1-alpha-2 http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm
             name: string // full country name 
         }
     },
     businessName: string,
-    currency: {
+    currencies: [{
         code: char(3), // ISO 4217 http://www.iso.org/iso/home/standards/currency_codes.htm,
         symbol: string
-    },
+    }],
     customDomain: string,
     description: string,
     email: string,
-    googleAnalyticsCode: string,
+    googleAnalyticsTrackingId: string,
     name: string,
     phoneNumber: string,
-    policies: {
-        creditCard: string,
-        payment: string,
-        privacy: string,
-        returns: string,
-        shipping: string,
-        sizing: string
-    },
     subdomain: string,
-    social: {
-        facebook: {
-            url: string,
-            username: string
-        },
-        twitter: {
-            url: string,
-            username: string
-        },
-        youtube: {
-            url: string,
-            username: string
-        },
-        instagram: {
-            url: string,
-            username: string
+    facebook: string,
+    twitter: string,
+    youtube: string,
+    instagram: string,
+    googlePlus: string,
+    pinterest: string,
+    regionalTaxationRules: [{
+        {
+            taxationRule: {
+                name: string,
+                rate: float,
+                number: string,
+                isShippingTaxed: boolean,
+                isTaxRemoved: boolean,
+                isTaxIncluded: boolean,
+            },
+            country: char(2),
+            region: string,
+            zipcode: string,
         }
-    },
-    tax: {
-        country: char(2),
-        isShippingTaxed: boolean,
-        isTaxRemoved: boolean,
-        isTaxIncluded: boolean,
-        label: string,
-        number: string,
-        rate: number
-    },
+    }],
     url: string // The absolute url of the store
 }</pre>
                         </div>
