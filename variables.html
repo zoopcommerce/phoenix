@@ -209,6 +209,80 @@ var linklist = {
 var menu = linklist.menu;</pre>
                         </div>
                     </section>
+                    <section id="order-variables" title="Order" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Order</h2>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">thankyou.twig</a></li>
+                                <li><a href="#">email/canceled.twig</a></li>
+                                <li><a href="#">email/digital-products.twig</a></li>
+                                <li><a href="#">email/fully-refunded.twig</a></li>
+                                <li><a href="#">email/invoice.twig</a></li>
+                                <li><a href="#">email/partially-refunded.twig</a></li>
+                                <li><a href="#">email/shipped.twig</a></li>
+                            </ul>
+                            <pre class="prettyprint linenums">
+var order = {
+    id: string,
+    completedOn: datetime,
+    updatedOn: datetime,
+    items: [item],
+    firstName: string,
+    lastName: string,
+    address: {
+        line1: string,
+        line2: string,
+        city: string,
+        state: string,
+        zipcode: string,
+        country: {
+            code: char(2),
+            name: string,
+        },
+    },
+    total: {
+        shippingPrice: float,
+        productPrice: float,
+        productQuantity: float,
+        discountPrice: float,
+        taxPrice: float,
+        orderPrice: float,
+        currency: {
+            code: string,
+            symbol: string,
+        }
+    },
+    shippingMethod: string,
+    paymentMethod: string,
+    state: string,
+    history: [{
+        state: string,
+        createdOn: datetime
+        createdBy: string,
+    }]
+}</pre>
+                        </div>
+                    </section>
+                    <section id="order-item-variables" title="Order Item" class="row-fluid">
+                        <div class="span12 well">
+                            <h2>Order Item</h2>
+                            <h5>Accessible from:</h5>
+                            <ul>
+                                <li><a href="#">thankyou.twig</a></li>
+                                <li><a href="#">email/canceled.twig</a></li>
+                                <li><a href="#">email/digital-products.twig</a></li>
+                                <li><a href="#">email/fully-refunded.twig</a></li>
+                                <li><a href="#">email/invoice.twig</a></li>
+                                <li><a href="#">email/partially-refunded.twig</a></li>
+                                <li><a href="#">email/shipped.twig</a></li>
+                            </ul>
+                            <pre class="prettyprint linenums">
+var item = {
+
+}</pre>
+                        </div>
+                    </section>
                     <section id="page-variables" title="Page" class="row-fluid">
                         <div class="span12 well">
                             <h2>Page</h2>
@@ -226,14 +300,12 @@ var page = {
         }
     }],
     css: array | [string], // contains an array of css files. This only applies if you are using Zoop default templates.
-    dojo: array | [string], // contains an array of dojo javascript files. This only applies if you are using Zoop default templates.
-    favicon: string | null, // favourite icon
+    javascript: array | [string] // contains an array of javascript files. This only applies if you are using Zoop default templates.
     meta: {
         description: string // The page meta description,
         openGraph: string, // This contains open graph information https://developers.facebook.com/docs/opengraph/
     },
     title: string, // The page title which is made up from product, category and site name,
-    javascript: array | [string], // contains an array of javascript files. This only applies if you are using Zoop default templates.
     url: {
         absolute: string, // The absolute url of the current page
         relative: string // The relative url of the current page
@@ -398,18 +470,9 @@ var product = {
                             </ul>
                             <pre class="prettyprint linenums">
 var site = {
-    status: {
-        active: boolean, // Is the store active or not
-        message: string | null // Contains a message which can be displayed when a store is inactive
-    },
-    policies: {
-        creditCard: string,
-        payment: string,
-        privacy: string,
-        returns: string,
-        shipping: string,
-        sizing: string
-    }
+    css: array | [string], // contains an array of css files. This only applies if you are using Zoop default templates.
+    favicon: string | null, // favourite icon,
+    javascript: array | [string] // contains an array of javascript files. This only applies if you are using Zoop default templates.
 }</pre>
                         </div>
                     </section>
@@ -467,7 +530,15 @@ var store = {
             zipcode: string,
         }
     }],
-    url: string // The absolute url of the store
+    url: string // The absolute url of the store,
+    policies: {
+        creditCard: string,
+        payment: string,
+        privacy: string,
+        returns: string,
+        shipping: string,
+        sizing: string
+    }
 }</pre>
                         </div>
                     </section>
